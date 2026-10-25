@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: olist
+    config:
+      meta:
+        external_location: "read_parquet('s3://{{ env_var('OLIST_BUCKET') }}/raw/olist/{name}/*/*.parquet', hive_partitioning=true)"
+    tables:
+      - name: orders
+      - name: order_items
+      - name: order_payments
+      - name: order_reviews
+      - name: customers
+      - name: products
+      - name: sellers
+      - name: product_category_translation
