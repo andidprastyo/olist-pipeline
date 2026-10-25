@@ -1,0 +1,13 @@
+olist:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../warehouse/olist.duckdb
+      schema: main
+      extensions: [httpfs, parquet]
+      settings:
+        s3_region: "{{ env_var('AWS_REGION') }}"
+      secrets:
+        - type: s3
+          provider: credential_chain
