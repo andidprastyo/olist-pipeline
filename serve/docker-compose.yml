@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: bi-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bi
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: olist_bi
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
