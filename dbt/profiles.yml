@@ -1,13 +1,20 @@
 olist:
   target: dev
   outputs:
+    # S3 mode: used on EC2, reads raw parquet from S3 via the instance role
     dev:
       type: duckdb
       path: ../warehouse/olist.duckdb
       schema: main
       extensions: [httpfs, parquet]
       settings:
-        s3_region: "{{ env_var('AWS_REGION') }}"
+        s3_region: "{{ env_var('AWS_REGION', 'us-east-1') }}"
       secrets:
         - type: s3
           provider: credential_chain
+    # Local mode: reads the local data/parquet folder, no AWS credentials needed
+    local:
+      type: duckdb
+      path: ../warehouse/olist.duckdb
+      schema: main
+      extensions: [parquet]

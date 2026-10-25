@@ -4,7 +4,7 @@ sources:
   - name: olist
     config:
       meta:
-        external_location: "read_parquet('s3://{{ env_var('OLIST_BUCKET') }}/raw/olist/{name}/*/*.parquet', hive_partitioning=true)"
+        external_location: "read_parquet('{{ env_var('OLIST_RAW_PATH', 's3://' ~ env_var('OLIST_BUCKET', 'unset-bucket') ~ '/raw/olist/{name}/*/*.parquet') }}', hive_partitioning=true)"
     tables:
       - name: orders
       - name: order_items
