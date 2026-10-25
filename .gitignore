@@ -9,3 +9,13 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+# dbt artifacts
+dbt/target/
+dbt/logs/
+dbt/.user.yml
+*.duckdb
+*.parquet
+
+# macOS
+.DS_Store
